@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- bootstrap@5.0.2 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
+    <!-- CSS -->
+    <link rel="stylesheet" href="main.css">
+    <title>SANDAY NIGHT DREAMER 放送回検索</title>
+</head>
+
+<body>
+    <main class="main pt-sm-3 pb-sm-5">
+        <div class="container-sm">
+            <div class="row">
+                <div class="col-12">
+                    <h2>サンドリ放送回の検索</h2>
+                    <form id="searchForm" action="" method="post">
+                        <div class="form-group mb-3">
+                            <label class="form-label isMsg">放送年</label>
+                            <p><select name="broadcast_year" id="broadcastYear">
+                                    <option value="-1" selected>--選択してください--</option>
+                                    <option value="2010">2010</option>
+                                    <option value="2011">2011</option>
+                                    <option value="2012">2012</option>
+                                    <option value="2013">2013</option>
+                                    <option value="2014">2014</option>
+                                    <option value="2015">2015</option>
+                                    <option value="2016">2016</option>
+                                    <option value="2017">2017</option>
+                                    <option value="2018">2018</option>
+                                    <option value="2019">2019</option>
+                                    <option value="2020">2020</option>
+                                    <option value="2021">2021</option>
+                                    <option value="2022">2022</option>
+                                    <option value="2023">2023</option>
+                                </select></p>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label class="form-label isMsg">放送月</label>
+                            <p><select name="broadcast_month" id="broadcastMonth">
+                                    <option value="-1" selected>--選択してください--</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                    <option value="11">11</option>
+                                    <option value="12">12</option>
+                                </select></p>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label class="form-label isMsg">放送日</label>
+                            <p><input type="text" name="broadcast_date" placeholder="例:20220401" id="broadcastDate"></p>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label class="form-label isMsg">放送内容</label>
+                            <p><input type="text" name="broadcast_content" placeholder="例:ゲスト回" id="broadcastContent"></p>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label class="form-label isMsg">アシスタント1</label>
+                            <p><input type="text" name="assistant_1" placeholder="例:タイムマシーン3号" id="assistant1"></p>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label class="form-label isMsg">アシスタント2</label>
+                            <p><input type="text" name="assistant_2" placeholder="例:安田" id="assistant2"></p>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label class="form-label isMsg">ゲスト</label>
+                            <p><input type="text" name="guests" placeholder="例:もう中学生" id="guests"></p>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label class="form-label isMsg">備考</label>
+                            <p><input type="text" name="remarks" placeholder="例:有吉さん不在" id="remarks"></p>
+                        </div>
+                        <button class="btn btn-primary mt-3" id="sndSearchBtn">検索</button>
+                    </form>
+
+                    <br><br>
+                    <div id="searchResultList"></div>
+
+                    <!-- JavaScript -->
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+                    <script src="main.js"></script>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>
