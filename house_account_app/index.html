@@ -4,11 +4,112 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HouseAccountBook</title>
+    <!-- bootstrap@5.0.2 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
+    <!-- CSS -->
+    <link rel="stylesheet" href="main.css">
+    <title>家計簿アプリ</title>
 </head>
 
 <body>
-    <script src="main.js" type="module"></script>
+    <main class="main pt-sm-3 pb-sm-5">
+        <div class="container-sm">
+            <div class="row">
+                <div class="col-12">
+                    <h2>家計簿 収支登録</h2>
+                    <form id="registerForm" method="post">
+                        <!-- 日付 -->
+                        <div class="form-group mb-1">
+                            <label class="form-label isMsg">
+                                <span class="form-group-text-required">必須</span>日付
+                            </label>
+                            <p><input type="date" id="date" required></p>
+                        </div>
+                        <!-- 項目 -->
+                        <div class="form-group mb-1">
+                            <label class="form-label isMsg">
+                                <span class="form-group-text-required">必須</span>項目
+                            </label>
+                            <p><select id="expenseItem" required>
+                                    <option value="-1" selected>--選択してください--</option>
+                                    <option value="1">住居費</option>
+                                    <option value="2">水道光熱費</option>
+                                    <option value="3">通信費</option>
+                                    <option value="4">保険料</option>
+                                    <option value="5">社会保険料</option>
+                                    <option value="6">自動車費</option>
+                                    <option value="7">事業費</option>
+                                    <option value="8">食費</option>
+                                    <option value="9">日用品費</option>
+                                    <option value="10">医療費</option>
+                                    <option value="11">美容費</option>
+                                    <option value="12">被服費</option>
+                                    <option value="13">趣味娯楽費</option>
+                                    <option value="14">交際費</option>
+                                    <option value="15">交通費</option>
+                                    <option value="16">投資</option>
+                                    <option value="17">貯金</option>
+                                    <option value="18">雑費</option>
+                                    <option value="19">収入</option>
+                                    <option value="20">臨時収入</option>
+                                </select></p>
+                        </div>
+                        <!-- 内容 -->
+                        <div class="form-group mb-1">
+                            <label class="form-label isMsg">
+                                <span class="form-group-text-required">必須</span>内容
+                            </label>
+                            <p><input type="text" id="content" placeholder="例:Coleman リュック" required></p>
+                        </div>
+                        <!-- 収入 -->
+                        <div class="form-group mb-1">
+                            <label class="form-label isMsg">収入</label>
+                            <p><input type="text" id="income" placeholder="例:350000"></p>
+                        </div>
+                        <!-- 支出 -->
+                        <div class="form-group mb-1">
+                            <label class="form-label isMsg">支出</label>
+                            <p><input type="text" id="spending" placeholder="例:2000"></p>
+                        </div>
+                        <!-- 支払い手段 -->
+                        <div class="form-group mb-1">
+                            <label class="form-label isMsg">支払い手段</label>
+                            <p><select id="byPayment">
+                                    <option value="-1" selected>--選択してください--</option>
+                                    <option value="1">現金</option>
+                                    <option value="2">銀行振込</option>
+                                    <option value="3">クレジットカード(個人)</option>
+                                    <option value="4">クレジットカード(事業)</option>
+                                    <option value="5">電子決済(QR,Suica等)</option>
+                                </select></p>
+                        </div>
+                        <!-- 領収書有無 -->
+                        <div class="form-group mb-1">
+                            <label class="form-label isMsg">領収書有無</label>
+                            <p><select id="receipt">
+                                    <option value="-1" selected>--選択してください--</option>
+                                    <option value="1">有(紙)</option>
+                                    <option value="2">有(電子)</option>
+                                    <option value="3">金融証跡</option>
+                                    <option value="4">無</option>
+                                </select></p>
+                        </div>
+                        <!-- 備考 -->
+                        <div class="form-group mb-1">
+                            <label class="form-label isMsg">備考</label>
+                            <p><input type="text" id="remarks" placeholder="例:20220401"></p>
+                        </div>
+
+                        <button class="btn btn-primary mt-3" id="registerBtn">登録</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- JavaScript -->
+    <script src="main.js"></script>
 </body>
 
 </html>

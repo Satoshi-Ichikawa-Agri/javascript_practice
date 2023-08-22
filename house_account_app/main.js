@@ -1,40 +1,55 @@
-// Google Sheets APIクライアントライブラリをロード
-gapi.load('client', initClient);
+/* 家計簿登録処理 */
+
+// ===== 変数宣言 ============================================
+const GOOGLE_SPREADSHEET_URL = ''; // Googleスプレッドシート GASのデプロイURL
+
+// HTML要素
+const registerForm = document.querySelector('#registerForm'); // Form全体
+
+const date = document.querySelector('#date'); // 日付
+const expenseItem = document.querySelector('#expenseItem'); // 費目
+const content = document.querySelector('#content'); // 内容
+const income = document.querySelector('#income'); // 収入
+const spending = document.querySelector('#spending'); // 支出
+const byPayment = document.querySelector('#byPayment'); // 支払手段
+const receipt = document.querySelector('#receipt'); // 領収書有無
+const remarks = document.querySelector('#remarks'); // 備考
+
+const registerBtn = document.querySelector('#registerBtn'); // 登録ボタン
+
+// ==========================================================
 
 /**
- *
+ * POST関数
+ * @param {*} event
  */
-function initClient() {
-  gapi.client
-    .init({
-      apiKey: 'AIzaSyDENDqAggofoosUwzxlknGH-as9xOKdpzw', // 作成したAPIキー
-      discoveryDocs: [
-        'https://sheets.googleapis.com/$discovery/rest?version=v4',
-      ],
-    })
-    .then(function () {
-      // 初期化が成功したらAPIを使用できるようになります
-      // ここでAPIを呼び出すコードを書くことができます
-      readSpreadsheetData();
-    });
+async function post(event) {
+  event.preventDefault();
+
+  const data = {
+    date: date.value,
+    expenseItem: expenseItem.value,
+    content: content.value,
+    income: income.value,
+    spending: spending.value,
+    byPayment: byPayment.value,
+    receipt: receipt.value,
+    remarks: remarks.value,
+  };
+
+  const options = {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  };
+
+  fetch(GOOGLE_SPREADSHEET_URL, options);
 }
 
-/**
- *
- */
-function readSpreadsheetData() {
-  gapi.client.sheets.spreadsheets.values
-    .get({
-      spreadsheetId: '1gFJoLwqV3X44023-3qchf6MzMgLkdhpIQu_kST1NoRU', // スプレッドシートのID
-      range: 'シート1!A1:I100', // 読み取る範囲
-    })
-    .then(function (response) {
-      var values = response.result.values;
-      if (values.length > 0) {
-        console.log('Cell A1 value:', values[0][0]);
-        console.log('Cell B1 value:', values[0][1]);
-      } else {
-        console.log('No data found.');
-      }
-    });
-}
+// 実行部
+document.addEventListener('DOMContentLoaded', function () {
+  registerBtn.addEventListener('click', post);
+});
