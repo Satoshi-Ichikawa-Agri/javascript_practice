@@ -19,12 +19,11 @@ const searchResultList = document.querySelector('#searchResultList'); // 検索�
 
 // ==========================================================
 
-async function sndSearch(event) {
-  // event.preventDefault()
-  // ブラウザのデフォルトの動作を無効化し、代わりにJavaScriptでカスタムの処理を実行するための強力な手段です。
-  // これにより、ユーザーエクスペリエンスを制御し、ウェブページやアプリケーションの挙動をカスタマイズすることができます。
-  // event.preventDefault();
-
+/**
+ *
+ * @returns
+ */
+async function sndSearch() {
   const data = {
     broadcast_year: broadcastYear.value,
     broadcast_month: broadcastMonth.value,
@@ -51,7 +50,14 @@ async function sndSearch(event) {
   return results;
 }
 
+/**
+ *
+ * @param {*} event
+ */
 async function listAddResults(event) {
+  // event.preventDefault()
+  // ブラウザのデフォルトの動作を無効化し、代わりにJavaScriptでカスタムの処理を実行するための強力な手段です。
+  // これにより、ユーザーエクスペリエンスを制御し、ウェブページやアプリケーションの挙動をカスタマイズすることができます。
   event.preventDefault();
   const results = await sndSearch();
 
@@ -59,6 +65,10 @@ async function listAddResults(event) {
   createTable(results);
 }
 
+/**
+ *
+ * @param {*} apiData
+ */
 function createTable(apiData) {
   const table = document.createElement('table'); // テーブルを作成
   const thead = document.createElement('thead'); // テーブルヘッダーを作成
@@ -104,6 +114,7 @@ function createTable(apiData) {
   searchResultList.appendChild(table); // テーブルをHTML文書に追加
 }
 
+// 実行部
 document.addEventListener('DOMContentLoaded', function () {
   sndSearchBtn.addEventListener('click', listAddResults);
 });

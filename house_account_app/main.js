@@ -1,7 +1,9 @@
 /* 家計簿登録処理 */
 
 // ===== 変数宣言 ============================================
-const GOOGLE_SPREADSHEET_URL = ''; // Googleスプレッドシート GASのデプロイURL
+// GoogleスプレッドシートGASのデプロイURL
+const GOOGLE_SPREADSHEET_URL =
+  'https://script.google.com/macros/s/AKfycbyPNj9JfhP1KU-yxd90fR3I8xo4TZamsNHtLUgeWq5nkCBGIMJ-pcdGFzZ46RmbhogQzg/exec';
 
 // HTML要素
 const registerForm = document.querySelector('#registerForm'); // Form全体
@@ -36,20 +38,27 @@ async function post(event) {
     receipt: receipt.value,
     remarks: remarks.value,
   };
+  console.log(data);
 
   const options = {
     method: 'POST',
-    mode: 'no-cors',
-    headers: {
-      'Content-Type': 'application/json',
-    },
     body: JSON.stringify(data),
   };
 
-  fetch(GOOGLE_SPREADSHEET_URL, options);
+  try {
+    const response = await fetch(GOOGLE_SPREADSHEET_URL, options);
+    if (response.ok) {
+      const text = await response.text();
+      console.log(text); // 成功した場合のメッセージをログに表示
+    } else {
+      console.error('Failed to send data to GAS.');
+    }
+  } catch (error) {
+    console.error('An error occurred:', error);
+  }
 }
 
 // 実行部
 document.addEventListener('DOMContentLoaded', function () {
-  registerBtn.addEventListener('click', post);
+  registerBtn.addEventListener('click', post, false);
 });
