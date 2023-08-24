@@ -5,6 +5,14 @@
 const GOOGLE_SPREADSHEET_URL =
   'https://script.google.com/macros/s/AKfycbyPNj9JfhP1KU-yxd90fR3I8xo4TZamsNHtLUgeWq5nkCBGIMJ-pcdGFzZ46RmbhogQzg/exec';
 
+// Google Sheets APIのスコープ
+const SCOPES = 'https://www.googleapis.com/auth/spreadsheets';
+
+// クライアントIDとAPIキー
+const CLIENT_ID =
+  '679250760777-bpj1ing6uurqbi15nnl30gkor3p3qmch.apps.googleusercontent.com';
+const API_KEY = 'AIzaSyBfv8hM2Qyo7SU0U6RJqCdBqUHjUAwMu3Y';
+
 // HTML要素
 const registerForm = document.querySelector('#registerForm'); // Form全体
 
@@ -27,6 +35,24 @@ const registerBtn = document.querySelector('#registerBtn'); // 登録ボタン
  */
 async function post(event) {
   event.preventDefault();
+
+  // APIクライアントの初期化
+  gapi.load('client', () => {
+    gapi.client
+      .init({
+        apiKey: API_KEY,
+        clientId: CLIENT_ID,
+        discoveryDocs: [
+          'https://sheets.googleapis.com/$discovery/rest?version=v4',
+        ],
+        scope: SCOPES,
+      })
+      .then(() => {
+        console.log('アクセスに成功しました。');
+        // 認証成功時の処理
+        // アクセストークンを使用してGoogle Sheets APIを呼び出すことができます
+      });
+  });
 
   const data = {
     date: date.value,
