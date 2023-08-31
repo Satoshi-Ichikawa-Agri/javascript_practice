@@ -34,6 +34,8 @@ async function sndSearch() {
     guests: guests.value,
     remarks: remarks.value,
   };
+  console.log('INPUT DATA:', data);
+
   const options = {
     method: 'POST',
     mode: 'cors',
